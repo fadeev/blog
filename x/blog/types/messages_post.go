@@ -13,11 +13,10 @@ const (
 
 var _ sdk.Msg = &MsgCreatePost{}
 
-func NewMsgCreatePost(creator string, title string, body string) *MsgCreatePost {
+func NewMsgCreatePost(creator string, title string) *MsgCreatePost {
 	return &MsgCreatePost{
 		Creator: creator,
 		Title:   title,
-		Body:    body,
 	}
 }
 

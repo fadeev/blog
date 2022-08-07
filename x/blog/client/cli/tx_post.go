@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"blog/x/blog/types"
+
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
@@ -12,19 +13,18 @@ import (
 
 func CmdCreatePost() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "create-post [title] [body]",
+		Use:   "create-post [title]",
 		Short: "Create a new post",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) (err error) {
 			argTitle := args[0]
-			argBody := args[1]
 
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
 				return err
 			}
 
-			msg := types.NewMsgCreatePost(clientCtx.GetFromAddress().String(), argTitle, argBody)
+			msg := types.NewMsgCreatePost(clientCtx.GetFromAddress().String(), argTitle)
 			if err := msg.ValidateBasic(); err != nil {
 				return err
 			}

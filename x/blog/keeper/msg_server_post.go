@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"blog/x/blog/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -15,7 +16,6 @@ func (k msgServer) CreatePost(goCtx context.Context, msg *types.MsgCreatePost) (
 	var post = types.Post{
 		Creator: msg.Creator,
 		Title:   msg.Title,
-		Body:    msg.Body,
 	}
 
 	id := k.AppendPost(
